@@ -33,6 +33,15 @@ const moveFile = () => {
     return;
   }
 
+  const parentDir = path.dirname(finalDestination);
+
+  if (!fs.existsSync(parentDir)) {
+    // eslint-disable-next-line no-console
+    console.error(`Error: Parent directory "${parentDir}" does not exist.`);
+
+    return;
+  }
+
   try {
     fs.renameSync(file, finalDestination);
   } catch (err) {
